@@ -27,4 +27,4 @@ class Lecturer(models.Model):
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __unicode__(self):
-        return smart_unicode(self.firstName) + smart_unicode(self.lastName)
+        return smart_unicode(self.firstName) + " " + smart_unicode(self.lastName)
