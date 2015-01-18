@@ -3,9 +3,9 @@ from django.utils.encoding import smart_unicode
 
 # Create your models here.
 class Lecturer(models.Model):
-    l_ID=models.IntegerField(primary_key=True)
+    #l_ID=models.IntegerField(primary_key=True)
     
-    #profiles of public servants
+    #profiles of lecturers
     title= models.CharField(max_length=60, null=True, blank=True)
     firstName= models.CharField(max_length=120, null=False, blank=False)
     middleName= models.CharField(max_length=120, null=True, blank=True)

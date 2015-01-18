@@ -8,6 +8,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'lecturers.views.home', name='home'),
+    url(r'^lecturers', 'lecturers.views.lecture', name='lecturers'),
+    url(r'^contact-us', 'lecturers.views.contactus', name='contactus'),
+    url(r'^about-us', 'lecturers.views.aboutus', name='aboutus'),
+    url(r'^help', 'lecturers.views.help', name='help'),
+    url(r'^schools', 'institutions.views.home', name='schools'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
