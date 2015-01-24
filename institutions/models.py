@@ -9,7 +9,7 @@ class Institution(models.Model):
     #Abr - Abbrevation 
     abr= models.CharField(max_length=10, null=True, blank=True)
     name = models.CharField(max_length=120, null=False, blank=False)
-    #former = models.BooleanField("Yes", "No", null=False, blank=False)
+    former = models.BooleanField(default = False, verbose_name="Former Name")
     formerName= models.CharField(max_length=120, null=True, blank=True)
     nickName = models.CharField(max_length=120, null=True, blank=True)
     motto = models.CharField(max_length=120, null=True, blank=True)
