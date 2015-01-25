@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect
 
-# Create your views here.
 from .forms import LecturerForm
+from .models import Lecturer
 from django.contrib import messages
 # Create your views here.
 
@@ -17,14 +17,20 @@ def home(request):
     return render_to_response("index.html", locals(), context_instance=RequestContext(request))
     #return render(request, template, context)
 
-def lecture(request):
+def lecturer(request):
+    lecturers = Lecturer.objects.all()
+    context =  {'lecturers': lecturers }
+    template = 'lecturers/lecturers.html'
+    return render(request, template, context)
+
+def addlecturer(request):
     
     form = LecturerForm(request.POST or None)
     if form.is_valid():
         save_it = form.save(commit=False)
         save_it.save()
         messages.success(request, 'Lecturer details added.')
-    return render_to_response("lecturers/lecturers.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("lecturers/add-lecturer.html", locals(), context_instance=RequestContext(request))
 
 def aboutus(request):
     

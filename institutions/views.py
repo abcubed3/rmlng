@@ -6,12 +6,19 @@ from django.shortcuts import render, render_to_response, RequestContext, HttpRes
 
 # Create your views here.
 from .forms import InstitutionForm
+from .models import Institution
 
 # Create your views here.
 
 
 def home(request):
+    institutes = Institution.objects.all()
+    context = {'institutes': institutes }
+    template = 'schools/schools.html'
     
+    return render(request, template, context)
+
+def addschool(request):
     form = InstitutionForm(request.POST or None)
     if form.is_valid():
         save_it = form.save(commit=False)
@@ -24,8 +31,7 @@ def home(request):
         
         send_mail(subject, message, from_email, to_list, fail_silently=True)
         messages.success(request, 'Schools details added.')
-    return render_to_response("schools/schools.html", locals(), context_instance=RequestContext(request))
-
+    return render_to_response("schools/add-school.html", locals(), context_instance=RequestContext(request))    
 
 def topschools(request):
     

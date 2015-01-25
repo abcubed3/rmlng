@@ -11,3 +11,24 @@ object.id is automatically created and can be used to retrieve instances of obje
 
 use user.is_authenticated()
 To verify user instance is authenticated
+
+use list_filters[]
+To create filtering and sorting of result
+
+use list_display[]
+To create required columns in admin
+
+use search_fields[]
+To add ability to search specific fields of the model
+
+use  list_editable[]
+To choose fields that can be editable in admin view at bulk
+
+use date_hierarchy = 'timestamp'
+To have a chronological menu of objects, based on time in database
+
+use readonly_fields []
+To display fields that are read only and are necessary for the user to see
+
+use prepopulated_fields = {"new" : ("original",) }
+To populate another field from a current field
