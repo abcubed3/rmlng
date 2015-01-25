@@ -5,6 +5,9 @@ from .models import Lecturer
 
 
 class LecturerAdmin(admin.ModelAdmin):
+    search_fields = ['firstName', 'lastName', 'title']
+    
+    list_display = ['__unicode__', 'currentPosition']
     class Meta:
         model= Lecturer
         

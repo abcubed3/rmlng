@@ -29,7 +29,9 @@ class Institution(models.Model):
     colors = models.CharField(max_length=120)
     
     website = models.URLField()
-    
+     
+    active = models.BooleanField(default=True)
+    slug = models.SlugField()
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True)

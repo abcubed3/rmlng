@@ -1,0 +1,13 @@
+use python manage.py shell
+To use the python shell on a project virtual environment
+
+use .objects.all()
+To get all objects of a model
+
+use object.save()
+To save model object instance
+
+object.id is automatically created and can be used to retrieve instances of objects
+
+use user.is_authenticated()
+To verify user instance is authenticated

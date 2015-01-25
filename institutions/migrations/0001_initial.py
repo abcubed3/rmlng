@@ -22,6 +22,8 @@ class Migration(SchemaMigration):
             ('location', self.gf('django.db.models.fields.CharField')(max_length=120)),
             ('colors', self.gf('django.db.models.fields.CharField')(max_length=120)),
             ('website', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=50)),
             ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('updated_Timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
@@ -37,6 +39,7 @@ class Migration(SchemaMigration):
         u'institutions.institution': {
             'Meta': {'object_name': 'Institution'},
             'abr': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
+            'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'colors': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
             'established': ('django.db.models.fields.DateField', [], {}),
             'former': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -46,6 +49,7 @@ class Migration(SchemaMigration):
             'motto': ('django.db.models.fields.CharField', [], {'max_length': '120', 'null': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
             'nickName': ('django.db.models.fields.CharField', [], {'max_length': '120', 'null': 'True', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'updated_Timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'vc': ('django.db.models.fields.CharField', [], {'max_length': '120', 'null': 'True', 'blank': 'True'}),

@@ -24,10 +24,10 @@ def home(request):
         
         send_mail(subject, message, from_email, to_list, fail_silently=True)
         messages.success(request, 'Schools details added.')
-    return render_to_response("schools.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("schools/schools.html", locals(), context_instance=RequestContext(request))
 
 
 def topschools(request):
     
     
-    return render_to_response("top-schools.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("schools/top-schools.html", locals(), context_instance=RequestContext(request))

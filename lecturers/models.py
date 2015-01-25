@@ -16,7 +16,7 @@ class Lecturer(models.Model):
     #i=models.ImageField(upload_to=/ps_images/)
     
     #University
-    currentPosition = models.CharField(max_length=120, null=True, blank=True)
+    currentPosition = models.CharField(max_length=120, null=True, blank=True, verbose_name= "Current Position")
     #formerPosition = models.CharField(max_length=120, null=True, blank=True)
     #departmentID = models.CharField(max_length=120, null=True, blank=True)
     #ministry = models.CharField(max_length=120, null=True, blank=True)
@@ -25,6 +25,9 @@ class Lecturer(models.Model):
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True)
-
+    
+    active = models.BooleanField(default=True)
+    slug = models.SlugField()
+    
     def __unicode__(self):
         return smart_unicode(self.firstName) + " " + smart_unicode(self.lastName)

@@ -15,6 +15,7 @@ def home(request):
     #to create a redirect
     #return HttpResponseRedirecr('/thank-you/')
     return render_to_response("index.html", locals(), context_instance=RequestContext(request))
+    #return render(request, template, context)
 
 def lecture(request):
     
@@ -23,7 +24,7 @@ def lecture(request):
         save_it = form.save(commit=False)
         save_it.save()
         messages.success(request, 'Lecturer details added.')
-    return render_to_response("lecturers.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("lecturers/lecturers.html", locals(), context_instance=RequestContext(request))
 
 def aboutus(request):
     
