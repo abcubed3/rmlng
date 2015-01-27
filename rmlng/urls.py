@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'lecturers.views.home', name='home'),
+    url(r'^s/$', 'lecturers.views.search', name='search'),
     url(r'^lecturers/$', 'lecturers.views.lecturer', name='lecturers'),
     url(r'^lecturers/(?P<slug>[\w-]+)/$', 'lecturers.views.seelecturer', name='seelecturer'),
     url(r'^add-lecturer/$', 'lecturers.views.addlecturer', name='addlecturers'),

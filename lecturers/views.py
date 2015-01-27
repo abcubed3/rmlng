@@ -2,6 +2,8 @@ from django.shortcuts import render, render_to_response, RequestContext, HttpRes
 
 from .forms import LecturerForm
 from .models import Lecturer
+
+from institutions.models import Institution
 from django.contrib import messages
 # Create your views here.
 
@@ -21,6 +23,23 @@ def lecturer(request):
     lecturers = Lecturer.objects.all()
     context =  {'lecturers': lecturers }
     template = 'lecturers/lecturers.html'
+    return render(request, template, context)
+
+def search(request):
+    try:
+        q = request.GET.get('q')
+    except:
+        q= None
+    if q:
+        lecturers = Lecturer.objects.filter(firstName__icontains=q)
+        institutes = Institution.objects.filter(name__icontains=q)
+        #if lecturers:
+        context =  {'query': q, 'lecturers': lecturers, 'institutes': institutes}
+        template = 'result.html' 
+       #no search term
+    else:
+        template = 'index.html'
+        context = {'nosearch':"Enter a school or lecturer in the search bar"}
     return render(request, template, context)
 
 def seelecturer(request, slug):

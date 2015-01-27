@@ -32,3 +32,4 @@ To display fields that are read only and are necessary for the user to see
 
 use prepopulated_fields = {"new" : ("original",) }
 To populate another field from a current field
+use {% cycle %} in a for loop to cycle througu
