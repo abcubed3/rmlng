@@ -20,8 +20,11 @@ class Lecturer(models.Model):
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name= "Updated")
     
     active = models.BooleanField(default=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     
+    #class Meta:
+    #    unique_together = ('slug', 'lastname')
+    #    
     def __unicode__(self):
         return smart_unicode(self.firstName) + " " + smart_unicode(self.lastName)
     
@@ -35,3 +38,13 @@ class LecturerImage(models.Model):
     
     def __unicode__(self):
         return self.lecturer.firstName + " "+ self.lecturer.lastName
+    
+class LecturerAttribute(models.Model):
+    lecturer = models.ForeignKey(Lecturer)
+    
+    tags = models.CharField(max_length=120, verbose_name="Attribute tags")
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name= "Updated")
+    
+    def __unicode__(self):
+        return self.lecturer.firstName + " "+ self.lecturer.tags

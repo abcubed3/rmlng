@@ -18,6 +18,15 @@ def home(request):
     
     return render(request, template, context)
 
+def seeschool(request, slug):
+    try:
+        school = Institution.objects.get(slug=slug)
+        context = {'school': school }
+        template = 'schools/schools.html'
+        return render(request, template, context)
+    except:
+        raise Http404
+    
 def addschool(request):
     form = InstitutionForm(request.POST or None)
     if form.is_valid():

@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect
+from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect, Http404
 
 from .forms import LecturerForm
 from .models import Lecturer
@@ -23,6 +23,15 @@ def lecturer(request):
     template = 'lecturers/lecturers.html'
     return render(request, template, context)
 
+def seelecturer(request, slug):
+    try:
+        lecturer= Lecturer.objects.get(slug=slug)
+        context = {'lecturer': lecturer }
+        template = 'lecturers/lecturers.html'
+        return render(request, template, context)
+    except:
+        raise Http404
+        
 def addlecturer(request):
     
     form = LecturerForm(request.POST or None)

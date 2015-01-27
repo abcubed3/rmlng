@@ -26,7 +26,7 @@ class Institution(models.Model):
     website = models.URLField()
      
     active = models.BooleanField(default=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name= "Updated")
