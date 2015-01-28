@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect, Http404
 
 from .forms import LecturerForm
-from .models import Lecturer
+from .models import Lecturer, LecturerAttribute
 
 from institutions.models import Institution
 from django.contrib import messages
@@ -45,7 +45,8 @@ def search(request):
 def seelecturer(request, slug):
     try:
         lecturer= Lecturer.objects.get(slug=slug)
-        context = {'lecturer': lecturer }
+        attributes = LecturerAttribute.objects.filter(lecturer=lecturer)
+        context = {'lecturer': lecturer , 'attributes': attributes}
         template = 'lecturers/lecturers.html'
         return render(request, template, context)
     except:

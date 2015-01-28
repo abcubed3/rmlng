@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Lecturer, LecturerImage
+from .models import Lecturer, LecturerImage, LecturerAttribute
 
 
 class LecturerAdmin(admin.ModelAdmin):
@@ -19,7 +19,14 @@ class LecturerAdmin(admin.ModelAdmin):
 class LecturerImageAdmin(admin.ModelAdmin):
     class Meta:
         model= LecturerImage
+        
+        
+class LecturerAttributeAdmin(admin.ModelAdmin):
+    list_display = ['__unicode__', 'updated_Timestamp']
+    class Meta:
+        model= LecturerAttribute        
 
 admin.site.register(Lecturer, LecturerAdmin)
 admin.site.register(LecturerImage, LecturerImageAdmin)
+admin.site.register(LecturerAttribute, LecturerAttributeAdmin)
     

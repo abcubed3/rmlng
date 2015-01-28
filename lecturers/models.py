@@ -41,10 +41,9 @@ class LecturerImage(models.Model):
     
 class LecturerAttribute(models.Model):
     lecturer = models.ForeignKey(Lecturer)
-    
     tags = models.CharField(max_length=120, verbose_name="Attribute tags")
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_Timestamp = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name= "Updated")
     
     def __unicode__(self):
-        return self.lecturer.firstName + " "+ self.lecturer.tags
+        return self.tags
