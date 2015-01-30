@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'south',
     'lecturers',
     'institutions',
+    'rates',
 )
 
 MIDDLEWARE_CLASSES = (
