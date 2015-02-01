@@ -1,7 +1,10 @@
 from django.db import models
 from django.utils.encoding import smart_unicode
+#from rates.models import Rate
+from institutions.models import Institution
 
 # Create your models here.
+    
 class Lecturer(models.Model):
     
     #profiles of lecturers
@@ -11,6 +14,7 @@ class Lecturer(models.Model):
     lastName= models.CharField(max_length=120, null=False, blank=False)
     
     #University
+    university = models.ForeignKey(Institution)
     department = models.CharField(max_length = 120, null= True, blank=True, verbose_name ="Department")
     currentPosition = models.CharField(max_length=120, null=True, blank=True, verbose_name= "Current Position")
     #formerPosition = models.CharField(max_length=120, null=True, blank=True)
@@ -22,6 +26,7 @@ class Lecturer(models.Model):
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
     
+    rate = models.DecimalField(default=0.00, max_digits=3, decimal_places=2, null=False, editable=True)
     #class Meta:
     #    unique_together = ('slug', 'lastname')
     #    
@@ -47,3 +52,6 @@ class LecturerAttribute(models.Model):
     
     def __unicode__(self):
         return self.tags
+    
+    
+    

@@ -5,7 +5,7 @@ from .models import Institution, InstitutionImage
 
 
 class InstitutionAdmin(admin.ModelAdmin):
-    search_fields = ['firstName', 'lastName', 'abr']
+    search_fields = ['name', 'location', 'abr']
     list_display = ['__unicode__', 'vc', 'established', 'formerName', 'former','active', 'updated_Timestamp']
     list_editable = ['active', 'vc', 'former', 'formerName']
     list_filter = ['former', 'active']

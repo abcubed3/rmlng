@@ -7,20 +7,15 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'lecturers.views.home', name='home'),
     url(r'^s/$', 'lecturers.views.search', name='search'),
-    url(r'^lecturers/$', 'lecturers.views.lecturer', name='lecturers'),
-    url(r'^lecturers/(?P<slug>[\w-]+)/$', 'lecturers.views.seelecturer', name='seelecturer'),
-    url(r'^add-lecturer/$', 'lecturers.views.addlecturer', name='addlecturers'),
+    url(r'^$', 'lecturers.views.home', name='home'),
     url(r'^contact-us', 'lecturers.views.contactus', name='contactus'),
     url(r'^about-us', 'lecturers.views.aboutus', name='aboutus'),
-    url(r'^help', 'lecturers.views.help', name='help'),
-    url(r'^schools/$', 'institutions.views.home', name='schools'),
-    url(r'^schools/(?P<slug>[\w-]+)/$', 'institutions.views.seeschool', name='seeschool'),
-    url(r'^add-school/$', 'institutions.views.addschool', name='addschool'),
-    url(r'^top-schools', 'institutions.views.topschools', name='top-schools'),
+    url(r'^help','lecturers.views.help', name='help'),
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^lecturers', include('lecturers.urls', namespace="lecturers")),
+    url(r'^institutions', include('institutions.urls', namespace="institutions")),
+    url(r'^rates/', include('rates.urls', namespace="rates")),
     url(r'^admin/', include(admin.site.urls)),
 )
 

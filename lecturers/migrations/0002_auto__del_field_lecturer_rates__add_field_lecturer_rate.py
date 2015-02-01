@@ -8,56 +8,23 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Lecturer'
-        db.create_table(u'lecturers_lecturer', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=12, null=True, blank=True)),
-            ('firstName', self.gf('django.db.models.fields.CharField')(max_length=120)),
-            ('middleName', self.gf('django.db.models.fields.CharField')(max_length=120, null=True, blank=True)),
-            ('lastName', self.gf('django.db.models.fields.CharField')(max_length=120)),
-            ('university', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['institutions.Institution'])),
-            ('department', self.gf('django.db.models.fields.CharField')(max_length=120, null=True, blank=True)),
-            ('currentPosition', self.gf('django.db.models.fields.CharField')(max_length=120, null=True, blank=True)),
-            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('updated_Timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50)),
-            ('rates', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['rates.Rate'])),
-        ))
-        db.send_create_signal(u'lecturers', ['Lecturer'])
+        # Deleting field 'Lecturer.rates'
+        db.delete_column(u'lecturers_lecturer', 'rates_id')
 
-        # Adding model 'LecturerImage'
-        db.create_table(u'lecturers_lecturerimage', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('lecturer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lecturers.Lecturer'])),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True)),
-            ('featured', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('active', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('updated_Timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal(u'lecturers', ['LecturerImage'])
-
-        # Adding model 'LecturerAttribute'
-        db.create_table(u'lecturers_lecturerattribute', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('lecturer', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['lecturers.Lecturer'])),
-            ('tags', self.gf('django.db.models.fields.CharField')(max_length=120)),
-            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('updated_Timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal(u'lecturers', ['LecturerAttribute'])
+        # Adding field 'Lecturer.rate'
+        db.add_column(u'lecturers_lecturer', 'rate',
+                      self.gf('django.db.models.fields.DecimalField')(default=0.0, max_digits=3, decimal_places=2),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Lecturer'
-        db.delete_table(u'lecturers_lecturer')
+        # Adding field 'Lecturer.rates'
+        db.add_column(u'lecturers_lecturer', 'rates',
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=0.0, to=orm['rates.Rate']),
+                      keep_default=False)
 
-        # Deleting model 'LecturerImage'
-        db.delete_table(u'lecturers_lecturerimage')
-
-        # Deleting model 'LecturerAttribute'
-        db.delete_table(u'lecturers_lecturerattribute')
+        # Deleting field 'Lecturer.rate'
+        db.delete_column(u'lecturers_lecturer', 'rate')
 
 
     models = {
@@ -90,7 +57,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'lastName': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
             'middleName': ('django.db.models.fields.CharField', [], {'max_length': '120', 'null': 'True', 'blank': 'True'}),
-            'rates': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['rates.Rate']"}),
+            'rate': ('django.db.models.fields.DecimalField', [], {'default': '0.0', 'max_digits': '3', 'decimal_places': '2'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '12', 'null': 'True', 'blank': 'True'}),
@@ -112,13 +79,6 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True'}),
             'lecturer': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['lecturers.Lecturer']"}),
-            'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'updated_Timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
-        },
-        u'rates.rate': {
-            'Meta': {'object_name': 'Rate'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'rates': ('django.db.models.fields.DecimalField', [], {'default': '0.0', 'max_digits': '3', 'decimal_places': '2'}),
             'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'updated_Timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         }
