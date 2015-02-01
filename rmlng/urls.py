@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^lecturers', include('lecturers.urls', namespace="lecturers")),
     url(r'^institutions', include('institutions.urls', namespace="institutions")),
-    url(r'^rates/', include('rates.urls', namespace="rates")),
+    url(r'^rates', include('rates.urls', namespace="rates")),
     url(r'^admin/', include(admin.site.urls)),
 )
 

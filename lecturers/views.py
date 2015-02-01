@@ -26,6 +26,7 @@ def search(request):
     except:
         q= None
     if q:
+        #for more about filters and fields look up, see link https://docs.djangoproject.com/en/1.6/topics/db/queries/#field-lookups
         #Search by lecturer lastName or institution name
         lecturers = Lecturer.objects.filter(lastName__icontains=q)
         institutes = Institution.objects.filter(name__icontains=q)

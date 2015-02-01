@@ -1,4 +1,8 @@
+
+
 from django.contrib import admin
+from datetime import datetime, timedelta
+from pytz import timezone
 from .models import Rating #Rate 
 from lecturers.models import Lecturer
 
@@ -27,10 +31,13 @@ class RatingAdmin(admin.ModelAdmin):
     list_filter = ['rating_time', 'rating']
     date_hierarchy = 'rating_time'
     
-    list_display = ['get_lecturer', 'rating', 'rating_time']
+    list_display = ['get_lecturer', 'rating', 'helpfulness', 'knowlegdeable', 'rating_time']
     class Meta:
         model=Rating
         
         
 #admin.site.register(Rate, RateAdmin)
 admin.site.register(Rating, RatingAdmin)
+
+
+#Timezone issue, check out this link http://www.pending.io/django-mysql-time-zones-and-how-to-fix-it/
