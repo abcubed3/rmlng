@@ -12,13 +12,20 @@ def rating(request):
     template = 'rates/rating.html'
     return render(request, template, context)
 
+#def get_help(request, slug):
+#    counter = Rating.objects.filter(lecturer__slug=slug).filter(helpfulness=5).count()
+#    context =  {'counter': counter }
+#    template = 'rates/rating.html'
+#    return render(request, template, context)
+   
 
 
 def ratelecturer(request, slug):
     slug = slug
     lect = Lecturer.objects.get(slug=slug)
     rates = Rating.objects.all().filter(lecturer=lect)
-    context =  {'rates': rates }
+    counter = Rating.objects.filter(lecturer=lect).filter(helpfulness=5).count()
+    context =  {'rates': rates, 'counter':counter}
     template = 'rates/rating.html'
     return render(request, template, context)
     

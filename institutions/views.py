@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect
+from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect, Http404
 
 # Create your views here.
 from .forms import InstitutionForm
@@ -42,7 +42,6 @@ def addschool(request):
         messages.success(request, 'Schools details added.')
     return render_to_response("schools/add-school.html", locals(), context_instance=RequestContext(request))    
 
-def topschools(request):
+def topschools(request): 
     
-    
-    return render_to_response("schools/top-schools.html", locals(), context_instance=RequestContext(request))
+    return render_to_response('schools/top-schools.html', locals(), context_instance=RequestContext(request))
